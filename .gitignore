@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Node.js
+node_modules/
+dist/
+.DS_Store
+
+# ComfyUI / Models (Large Files)
+models/
+output/
+*.pth
+*.safetensors
+*.ckpt
+*.index
+
+# Electron Builder
+dist_electron/
+
+# IDEs
+.vscode/
+.idea/

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VozLatina AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-icon">VL</div>
+                <h1>VozLatina AI</h1>
+            </div>
+
+            <nav class="nav-menu">
+                <button class="nav-item active">
+                    <span class="icon">✨</span>
+                    Crear Video
+                </button>
+                <button class="nav-item">
+                    <span class="icon">📚</span>
+                    Mis Voces
+                </button>
+                <button class="nav-item">
+                    <span class="icon">🎞️</span>
+                    Galería
+                </button>
+                <button class="nav-item">
+                    <span class="icon">⚙️</span>
+                    Ajustes
+                </button>
+            </nav>
+
+            <div class="status-card">
+                <div class="status-indicator online"></div>
+                <span>Motor Local: Listo</span>
+                <small>RTX 5070 Ti Detected</small>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <h2>Nuevo Proyecto</h2>
+                <div class="user-profile">
+                    <span>Usuario Pro</span>
+                </div>
+            </header>
+
+            <div class="workspace">
+                <!-- Step 1: Audio Source -->
+                <section class="card input-section">
+                    <div class="card-header">
+                        <h3>1. Audio de Referencia</h3>
+                        <span class="badge">RVC v2</span>
+                    </div>
+                    <div class="drop-zone" id="audio-drop">
+                        <p>Arrastra tu archivo de audio aquí o haz clic</p>
+                        <small>Soporta .wav, .mp3 (Max 10MB)</small>
+                    </div>
+                    <div class="voice-selector">
+                        <label>O elige un preset:</label>
+                        <select>
+                            <option>🇲🇽 Mexicano Neutro (Hombre)</option>
+                            <option>🇦🇷 Rioplatense (Mujer)</option>
+                            <option>🇨🇴 Colombiano (Hombre)</option>
+                            <option>🇨🇱 Chileno (Mujer)</option>
+                        </select>
+                    </div>
+                </section>
+
+                <!-- Step 2: Text/Script -->
+                <section class="card script-section">
+                    <div class="card-header">
+                        <h3>2. Guión (Texto a Voz)</h3>
+                        <span class="badge">XTTS-v2</span>
+                    </div>
+                    <textarea placeholder="Escribe aquí lo que quieres que diga el avatar..."></textarea>
+                    <div class="controls">
+                        <button class="btn-secondary">Generar Audio Previo</button>
+                    </div>
+                </section>
+
+                <!-- Step 3: Avatar -->
+                <section class="card avatar-section">
+                    <div class="card-header">
+                        <h3>3. Avatar (Lip-Sync)</h3>
+                        <span class="badge">LivePortrait</span>
+                    </div>
+                    <div class="avatar-grid">
+                        <div class="avatar-item selected"><img src="https://via.placeholder.com/100" alt="Avatar 1">
+                        </div>
+                        <div class="avatar-item"><img src="https://via.placeholder.com/100" alt="Avatar 2"></div>
+                        <div class="avatar-item add-new">+</div>
+                    </div>
+                </section>
+            </div>
+
+            <footer class="action-bar">
+                <div class="settings-quick">
+                    <label><input type="checkbox" checked> Upscale 1080p</label>
+                    <label><input type="checkbox"> Watermark Invisible</label>
+                </div>
+                <button class="btn-primary" id="generate-btn">
+                    GENERAR VIDEO (Render Local)
+                </button>
+            </footer>
+        </main>
+    </div>
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal" style="display: none;">
+        <div class="modal-content card">
+            <div class="card-header">
+                <h3>⚙️ Configuración del Motor</h3>
+                <button class="close-btn">×</button>
+            </div>
+            <div class="settings-group">
+                <label>Modo de Ejecución</label>
+                <select id="engine-mode">
+                    <option value="local">Local (In-App Python)</option>
+                    <option value="remote">Remoto (Servidor GPU)</option>
+                </select>
+            </div>
+            <div class="settings-group" id="remote-config" style="display: none;">
+                <label>URL del Servidor ComfyUI</label>
+                <input type="text" placeholder="http://192.168.1.50:8188" value="http://127.0.0.1:8188">
+                <button class="btn-secondary small">Probar Conexión</button>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+    <script src="renderer.js"></script>
+</body>
+
+</html>
